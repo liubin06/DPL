@@ -72,48 +72,6 @@ def criterion(scores,arg):
         pu_prob = torch.sigmoid (pos_scores[:, 0] - neg_scores[:, 0])
         loss = -torch.log(pu_prob).mean()
 
-    elif arg.LOSS == 'Info_NCE':
-        pos_scores = pos_scores.exp()
-        neg_scores = neg_scores.exp()
-        loss = (- torch.log(pos_scores[:, 0] / (pos_scores[:, 0] + neg_scores.sum(dim=-1)))).mean()
-
-    elif arg.LOSS == 'DCL':
-        pos_scores = pos_scores.exp()
-        neg_scores = neg_scores.exp()
-        Ng = (- arg.N * arg.tau_plus * pos_scores.mean(dim=-1) + neg_scores.sum(dim=-1)) / (1 - arg.tau_plus)
-        Ng = torch.clamp(Ng, min=arg.N * math.exp(-1 / arg.temperature))
-        loss = (- torch.log(pos_scores[:, 0] / (pos_scores[:, 0] + Ng))).mean()
-
-    elif arg.LOSS == 'HCL':
-        pos_scores = pos_scores.exp()
-        neg_scores = neg_scores.exp()
-        imp = (0.5 * neg_scores.log()).exp()
-        reweight_neg = (imp * neg_scores).sum(dim=-1) / imp.mean(dim=-1)
-        Ng = (- arg.N * arg.tau_plus * pos_scores.mean(dim=-1) + reweight_neg) / (1 - arg.tau_plus)
-        Ng = torch.clamp(Ng, min=arg.N * math.exp(-1 / arg.temperature))
-        loss = (- torch.log(pos_scores[:, 0] / (pos_scores[:, 0] + Ng))).mean()
-
-    elif arg.LOSS == 'BCL':
-        alpha = 0.55
-        beta = 0.6
-        neg_scores = neg_scores.exp()
-        hatx = neg_scores.unsqueeze(-1)
-        X = neg_scores.unsqueeze(1)
-        cdf_u = (X <= hatx).sum(dim=-1) / X.shape[-1]
-        cdf = cdf_trans(cdf_u, alpha, arg.tau_plus)
-        ccdf = 1 - cdf
-        phi1 = 2 * ccdf
-        phi2 = 2 * cdf
-
-        x_tn = alpha * phi1 + (1 - alpha) * phi2
-        x_fn = (1 - alpha) * phi1 + alpha * phi2
-
-        x_htn = (alpha * (1 - beta) * phi1 + (1 - alpha) * beta * phi2) / (alpha * (1 - beta) + (1 - alpha) * beta + 1e-3)
-        omega = x_htn / (x_tn * (1 - arg.tau_plus) + x_fn * arg.tau_plus)
-        Ng = (omega * neg_scores).sum(dim=-1)
-        loss = (- torch.log(torch.sigmoid(pos_scores[:, 0] - Ng))).mean()
-
-
     elif arg.LOSS == 'DPL':
         assert arg.M >=1
         pu_prob = torch.sigmoid(pos_scores[:, 0:1] - neg_scores)       # bs * N
@@ -122,7 +80,7 @@ def criterion(scores,arg):
         pn_prob = torch.clamp(pn_prob, min=1e-2) #This restriction is in place to avoid a negative probability value.
         loss = -torch.log(pn_prob).mean()
     else:
-        print('Invalid loss function [BPR, Info_NCE, DCL, HCL, DPL]')
+        print('Invalid loss function')
         raise Exception
     return loss
 
