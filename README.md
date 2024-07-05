@@ -1,2 +1,2 @@
-# DPL
-Debiased Pairwise Loss
+# DPL: Debiased Pairwise Learning for Implicit Collaborative Filtering
+DPL rectifys the probability bias caused by PU data, in order to obtain an estimator consistent with the supervised paired loss. This correction of optimization objective bias enables collaborative filtering models to learn parameters similar to those in fully supervised settings, thereby achieving improved generalization performance.
