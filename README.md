@@ -5,6 +5,10 @@ DPL rectifys the probability bias caused by sampling bias, in order to obtain an
 <img src='https://github.com/liubin06/DPL/blob/main/dpl.png?raw=true' width='1000'/>
 </p>
 
+## Prerequisites
+- Python 3.7 
+- PyTorch 1.3.1
+- 
 ## Flags:
 
 `--LOSS`: loss function, choose DPL or BPR.
