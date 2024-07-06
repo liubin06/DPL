@@ -8,7 +8,7 @@ DPL rectifys the probability bias caused by sampling bias, in order to obtain an
 ## Prerequisites
 - Python 3.7 
 - PyTorch 1.3.1
-- 
+
 ## Flags:
 
 `--LOSS`: loss function, choose DPL or BPR.
