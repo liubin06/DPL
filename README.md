@@ -52,4 +52,4 @@ python main.py  --LOSS DPL  --dataset_name '1M'  --encoder MF  --tau_plus 0.05  
 
 
 ## Acknowledgements
-We extend our appreciation to [DCL](https://github.com/chingyaoc/DCL) whose prior work has laid the foundation for this study. Their work has inspired us to advance research on debiasing pairwise loss.
+We extend our appreciation to [DCL](https://github.com/chingyaoc/DCL) that inspired us to advance research on debiasing pairwise loss.
