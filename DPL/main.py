@@ -44,21 +44,12 @@ def get_data_path():
         total_file = directory + '/' + 'gowalla.csv'
         train_file = directory + '/' + 'gowalla_train.csv'
         test_file = directory + '/' + 'gowalla_test.csv'
-    elif arg.dataset == 'amazon-book':
-        total_file = directory + '/' + 'amazon-book.csv'
-        train_file = directory + '/' + 'amazon-book_train.csv'
-        test_file = directory + '/' + 'amazon-book_test.csv'
     elif arg.dataset == 'yelp2018':
         total_file = directory + '/' + 'yelp2018.csv'
         train_file = directory + '/' + 'yelp2018_train.csv'
         test_file = directory + '/' + 'yelp2018_test.csv'
     return total_file, train_file, test_file
 
-def cdf_trans(cdf_u, alpha, tau_plus):
-    tau_minus = 1 - tau_plus
-    a = (1 - 2 * alpha) * (tau_minus - tau_plus) + 1e-3
-    b = 2 * (alpha * tau_minus + (1 - alpha) * tau_plus)
-    return (-b + torch.sqrt(b ** 2 + 4 * a * cdf_u)) / (2 * a)
 
 def criterion(scores,arg):
     '''
