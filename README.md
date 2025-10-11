@@ -1,4 +1,20 @@
 # DPL: Debiased Pairwise Learning for Implicit Collaborative Filtering
+
+This work is accepted for publication in [***IEEE Transactions on Knowledge and Data Engineering (IEEE TKDE)***](10.1109/TKDE.2024.3479240). Should you use this work in your research, please cite the following paper:
+```bibtex
+# bibtex
+@article{liu2024DPL,
+  title={Debiased pairwise learning for implicit collaborative filtering},
+  author={Liu, Bin and Luo, Qin and Wang, Bang},
+  journal={IEEE Transactions on Knowledge and Data Engineering},
+  year={2024},
+  volume={36},
+  number={12},
+  pages={7878-7892},
+  doi = {10.1109/TKDE.2024.3479240}
+}
+```
+
 DPL rectifys the probability bias caused by sampling bias, in order to obtain an estimator consistent with the supervised paired loss. This correction of optimization objective bias enables collaborative filtering models to learn parameters similar to those in fully supervised settings, thereby achieving improved generalization performance.
 
 <p align='left'>
