@@ -1,6 +1,6 @@
 # DPL: Debiased Pairwise Learning for Implicit Collaborative Filtering
 
-This work is accepted for publication in [***IEEE Transactions on Knowledge and Data Engineering (IEEE TKDE)***](10.1109/TKDE.2024.3479240). Should you use this work in your research, please cite the following paper:
+This work is accepted for publication in [***IEEE Transactions on Knowledge and Data Engineering (IEEE TKDE)***](https://ieeexplore.ieee.org/document/10715705). Should you use this work in your research, please cite the following paper:
 ```bibtex
 # bibtex
 @article{liu2024DPL,
